@@ -1,0 +1,89 @@
+/*
+Main BG: #121212
+Accent: #232323
+Highlight: #333333
+YT Red: #ff0000
+
+*/
+body {
+  background-color: #121212 ;
+  color: white ;
+
+  font-family: sans-serif ;
+
+  margin-left: 120px ;
+  margin-right: 120px ;
+  margin-top: 60px ;
+}
+button {
+  background-color: #333333 ;
+  border: none ;
+  color: white ;
+  font-size: 32px ;
+  width: 100% ;
+  cursor: pointer ;
+}
+button:hover {
+  background-color: #ff0000 ;
+}
+#main {
+  text-align: center ;
+
+  width: 100% ;
+  height: 720px ;
+}
+#yt-video {
+  width: 100% ;
+  height: 100% ;
+}
+#video.container {
+  display: inline-block ;
+
+  width: 1280px ;
+  height: 720px ;
+
+  margin-right: 40px ;
+}
+#sidebar.container {
+  vertical-align: top ;
+
+  width: 330px ;
+  height: 100% ;
+  display: inline-block ;
+}
+.subcontainer {
+  background-color: #232323 ;
+
+  width: 100% ;
+  margin-bottom: 1% ;
+
+}
+.text {
+  display: block ;
+  font-size: 20px ;
+}
+.label {
+  font-size: 20px ;
+  font-weight: bold ;
+}
+.regular {
+  font-size: 16px ;
+  font-weight: normal ;
+}
+#info.subcontainer {
+  height: 30% ;
+  text-align: left ;
+}
+#info-text.subsubcontainer {
+  padding: 10px ;
+}
+#prev-vids.subcontainer {
+  height: 69% ;
+
+  position: relative ;
+}
+#new-video.btn {
+  position: absolute ;
+  bottom: 0 ;
+  left: 0 ;
+}
