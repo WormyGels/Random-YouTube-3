@@ -1,6 +1,6 @@
 <?php
 
-$json = getVideos() ;
+$json = getVideos(5) ;
 echo $json ;
 
 function getVideos($num = 20) {
@@ -24,6 +24,8 @@ function getVideos($num = 20) {
 
     $objs[] = $obj ;
   }
+
+  $objs = array_reverse($objs) ;
 
   return json_encode($objs) ;
 

@@ -3,8 +3,25 @@
 //call the function
 $id = getRandomVideo() ;
 //echo it to JS
-echo $id ;
+echo getLatestVid() ;
 
+//getting odd behavior from insert_id so need to make this unfortunately
+function getLatestVid() {
+  require "vars.php" ;
+
+  $conn = new mysqli($dbHost, $dbUser, $dbPass, $db) ;
+  $stmt = $conn->prepare("SELECT id FROM videos ORDER BY id DESC LIMIT 1") ;
+
+  $stmt->execute() ;
+  $stmt->bind_result($id) ;
+  $stmt->fetch() ;
+
+
+  if (isset($id))
+    return $id ;
+  else
+    return 0 ;
+}
 //will return the id of the last inserted video
 function getRandomVideo() {
   require "vars.php" ;
@@ -37,8 +54,6 @@ function getRandomVideo() {
     $stmt = $conn->prepare("INSERT INTO videos (title, channel, vidstring, seed) VALUES (?, ?, ?, ?)") ;
     $stmt->bind_param("ssss", $title, $channel, $vidString, $q) ;
     $stmt->execute() ;
-
-    return $conn->insert_id ;
 
   }
 

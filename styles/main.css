@@ -105,6 +105,7 @@ button:hover {
   border-bottom: 1px solid #333333 ;
 
   cursor: pointer ;
+  user-select: none ;
 }
 .prev-vid:hover {
   background-color: #333333 ;
@@ -154,4 +155,7 @@ button:hover {
   position: absolute ;
   bottom: 14px ;
   right: 14px ;
+}
+.active {
+  background-color: #333333 ;
 }
