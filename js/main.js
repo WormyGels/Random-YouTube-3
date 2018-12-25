@@ -14,24 +14,21 @@ var curVideo = 0 ;
 $(function() {
 
   //set the click event for the new video button
-  $("#new-video").click(function() {
-
-    var http = $.ajax("php/NewVideo.php").done(function(response) {
-      if (response != "") {
-        switchVideo(response) ;
-      }
-    }) ;
-
-  }) ;
+  $("#new-video").click(newVideo) ;
 
   //load the 20 most recent videos into the recent videos list
   var http = $.ajax("php/GetRecentVideos.php").done(function(response) {
     if (response != "") {
       var json = JSON.parse(response) ;
       curJson = json ;
-      curVideo = json[json.length-1].id ;
-      fillRecents(json) ;
-      switchVideo(curVideo) ;
+      if (json.length < 1) {
+        newVideo() ;
+      }
+      else {
+        curVideo = json[json.length-1].id ;
+        fillRecents(json) ;
+        switchVideo(curVideo) ;
+      }
     }
     else
       window.alert("There was a problem communicating with the database. Please refresh the page.") ;
@@ -100,6 +97,13 @@ var refreshList = function() {
         curJson = json ;
         fillRecents(json) ;
       }
+    }
+  }) ;
+}
+var newVideo = function() {
+  var http = $.ajax("php/NewVideo.php").done(function(response) {
+    if (response != "") {
+      switchVideo(response) ;
     }
   }) ;
 }

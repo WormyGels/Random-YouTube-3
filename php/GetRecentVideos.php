@@ -7,7 +7,7 @@ function getVideos($num = 20) {
   require "vars.php" ;
 
   $conn = new mysqli($dbHost, $dbUser, $dbPass, $db) ;
-  $stmt = $conn->prepare("SELECT id, title, channel, vidstring, date FROM videos ORDER BY id DESC LIMIT $num") ;
+  $stmt = $conn->prepare("SELECT id, title, channel, vidstring, date FROM $table ORDER BY id DESC LIMIT $num") ;
   $stmt->execute() ;
   $stmt->bind_result($id, $title, $channel, $vidString, $date) ;
 

@@ -9,7 +9,7 @@ function getVideo($id) {
   require "vars.php" ;
 
   $conn = new mysqli($dbHost, $dbUser, $dbPass, $db) ;
-  $stmt = $conn->prepare("SELECT title, channel, vidstring, seed, date FROM videos WHERE id=?") ;
+  $stmt = $conn->prepare("SELECT title, channel, vidstring, seed, date FROM $table WHERE id=?") ;
   $stmt->bind_param("s", $id) ;
   $stmt->execute() ;
   $stmt->bind_result($title, $channel, $vidString, $seed, $date) ;
@@ -21,7 +21,7 @@ function getVideo($id) {
   $obj->vidString = $vidString ;
   $obj->date = $date ;
   return json_encode($obj) ;
-  
+
 }
 
 

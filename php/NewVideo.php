@@ -10,7 +10,7 @@ function getLatestVid() {
   require "vars.php" ;
 
   $conn = new mysqli($dbHost, $dbUser, $dbPass, $db) ;
-  $stmt = $conn->prepare("SELECT id FROM videos ORDER BY id DESC LIMIT 1") ;
+  $stmt = $conn->prepare("SELECT id FROM $table ORDER BY id DESC LIMIT 1") ;
 
   $stmt->execute() ;
   $stmt->bind_result($id) ;
@@ -51,7 +51,7 @@ function getRandomVideo() {
 
     //insert into database
     $conn = new mysqli($dbHost, $dbUser, $dbPass, $db) ;
-    $stmt = $conn->prepare("INSERT INTO videos (title, channel, vidstring, seed) VALUES (?, ?, ?, ?)") ;
+    $stmt = $conn->prepare("INSERT INTO $table (title, channel, vidstring, seed) VALUES (?, ?, ?, ?)") ;
     $stmt->bind_param("ssss", $title, $channel, $vidString, $q) ;
     $stmt->execute() ;
 
