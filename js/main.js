@@ -1,5 +1,6 @@
 //config
 var refreshTime = 200 ; //time to refresh recent videos list
+var dateFormat = "MM/DD/YYYY h:mm A" ;
 
 //an array of all the videos in the recent videos list
 var videos = [] ;
@@ -11,7 +12,7 @@ var curJson = "" ;
 var curVideo = 0 ;
 
 //when jquery is loaded
-$(function() {
+$(window).on('load', function() {
 
   //set the click event for the new video button
   $("#new-video").click(newVideo) ;
@@ -48,7 +49,8 @@ function fillRecents(json) {
     html += '<img class="prev-video thumbnail" src="https://i.ytimg.com/vi/'+vidString+'/hqdefault.jpg">' ;
     html += '<span class="prev-video title">'+title+'</span>' ;
     html += '<span class="prev-video channel">'+channel+'</span>' ;
-    html += '<span class="prev-video date">'+date+'</span>' ;
+    var momDate = moment(date) ;
+    html += '<span class="prev-video date">'+momDate.format(dateFormat)+'</span>' ;
     html += '<span class="prev-video num">'+id+'</span>' ;
     html += '</div>' ;
     //set a click event
@@ -74,7 +76,8 @@ function switchVideo(newId) {
       var decode = JSON.parse(response) ;
       $("#title").text(decode.title) ;
       $("#channel").text(decode.channel) ;
-      $("#date").text(decode.date) ;
+      var date = moment(decode.date) ;
+      $("#date").text(date.format(dateFormat)) ;
       $("#vidnum").text(newId) ;
 
       curVideo = newId ;
