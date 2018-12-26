@@ -59,15 +59,23 @@ button:hover {
 }
 .text {
   display: block ;
-  font-size: 20px ;
+  font-size: 16px ;
 }
 .label {
-  font-size: 20px ;
-  font-weight: bold ;
+  width: 100% ;
+  text-align: center ;
+
 }
 .regular {
-  font-size: 16px ;
   font-weight: normal ;
+}
+#title.regular {
+  width: 100% ;
+  /* border-bottom: 1px solid #333333 ; */
+  font-size: 20px ;
+  font-weight: bold ;
+
+
 }
 #info.subcontainer {
   height: 30% ;
