@@ -7,6 +7,6 @@ $table = "videos" ;
 
 $dbHost = "localhost" ;
 
-$apiKey = "***REMOVED***" ;
+$apiKey = "your_api_key" ;
 
 ?>
