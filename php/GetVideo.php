@@ -1,8 +1,9 @@
 <?php
 
-
-$id = $_GET["id"] ;
-echo getVideo($id) ;
+if (isset($_GET["id"])) {
+  $id = $_GET["id"] ;
+  echo getVideo($id) ;
+}
 
 function getVideo($id) {
 
