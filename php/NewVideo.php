@@ -49,6 +49,10 @@ function getRandomVideo() {
     $channel = $channels[$randIndex] ;
     $title = $titles[$randIndex] ;
 
+    if (videoExists($vidString)) {
+      getRandomVideo() ;
+    }
+
     //insert into database
     $conn = new mysqli($dbHost, $dbUser, $dbPass, $db) ;
     $stmt = $conn->prepare("INSERT INTO $table (title, channel, vidstring, seed) VALUES (?, ?, ?, ?)") ;
@@ -57,6 +61,20 @@ function getRandomVideo() {
 
   }
 
+}
+function videoExists($vidstring) {
+  require "vars.php" ;
+
+  $conn = new mysqli($dbHost, $dbUser, $dbPass, $db) ;
+  $stmt = $conn->prepare("SELECT id FROM $table WHERE vidstring = ?") ;
+  $stmt->bind_param("s", $vidstring) ;
+  $stmt->bind_result($id) ;
+  $stmt->execute() ;
+
+  if (isset($id)) {
+    return true ;
+  }
+  return false ;
 }
 function getRandomString($length = 5) {
   return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length) ;
