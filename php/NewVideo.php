@@ -40,27 +40,25 @@ function getRandomVideo() {
   //call again if we got no results
   if (!isset($titles)) {
     getRandomVideo() ;
-  }
-  //or just continue
-  else {
-    //pick one of our (up to 50) videos
-    $randIndex = rand(0, count($titles)-1) ;
-    $vidString = $vidStrings[$randIndex] ;
-    $channel = $channels[$randIndex] ;
-    $title = $titles[$randIndex] ;
-
-    if (videoExists($vidString)) {
-      getRandomVideo() ;
-    }
-
-    //insert into database
-    $conn = new mysqli($dbHost, $dbUser, $dbPass, $db) ;
-    $stmt = $conn->prepare("INSERT INTO $table (title, channel, vidstring, seed) VALUES (?, ?, ?, ?)") ;
-    $stmt->bind_param("ssss", $title, $channel, $vidString, $q) ;
-    $stmt->execute() ;
-
+    return ;
   }
 
+  //pick one of our (up to 50) videos
+  $randIndex = rand(0, count($titles)-1) ;
+  $vidString = $vidStrings[$randIndex] ;
+  $channel = $channels[$randIndex] ;
+  $title = $titles[$randIndex] ;
+
+  if (videoExists($vidString)) {
+    getRandomVideo() ;
+    return ;
+  }
+
+  //insert into database
+  $conn = new mysqli($dbHost, $dbUser, $dbPass, $db) ;
+  $stmt = $conn->prepare("INSERT INTO $table (title, channel, vidstring, seed) VALUES (?, ?, ?, ?)") ;
+  $stmt->bind_param("ssss", $title, $channel, $vidString, $q) ;
+  $stmt->execute() ;
 }
 function videoExists($vidstring) {
   require "vars.php" ;
