@@ -75,6 +75,16 @@ function videoExists($vidstring) {
   return false ;
 }
 function getRandomString($length = 5) {
-  return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length) ;
+  $domain = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  
+  $str = "";
+  for ($i = 0; $i < $length; $i++) {
+    $str .= $domain[rand(0, strlen($domain)-1)];
+  }
+
+  return $str;
 }
+// function getRandomString($length = 5) {
+//   return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length) ;
+// }
 ?>
